@@ -1,0 +1,14 @@
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore PDF and Image files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+# Ignore virtual environments (just in case)
+.venv/
+venv/
+env/
+__pycache__/
