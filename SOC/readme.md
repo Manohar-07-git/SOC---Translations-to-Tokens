@@ -107,7 +107,20 @@ A comprehensive, production-grade repository tracing the evolution of sequence m
 *   Constructed an interactive sequence model using the self-implemented LSTM layer. The network processes input text strings, tracks semantic context, and dynamically predicts the most contextually relevant emoji.
 
 ---
+---
 
+## 🏛️ Pre-Transformer Baseline: Traditional Seq2Seq (Self-Study)
+
+Before diving into modern attention-based systems, I independently implemented a classic **Recurrent Encoder-Decoder (Seq2Seq)** framework using vanilla LSTMs/GRUs. This served as my baseline control environment to understand the historical evolution of Machine Translation.
+
+### ⚠️ The Information Bottleneck & Degradation Limits
+While highly effective for short phrases, this implementation clearly exposed the classic architectural vulnerability of pre-attention NLP:
+* **The Context Vector Squeeze:** The model forces variable-length input sequences to compress entirely into a single, fixed-length hidden state vector ($h_T$). 
+* **Long-Sentence Degradation:** For longer inputs, the network suffers from severe information loss and recency bias, causing generation to fall apart as sentence complexity scales.
+
+> **Key Engineering Takeaway:** Building this traditional model was a deliberate design choice. Directly experiencing this compression bottleneck provided the exact structural intuition needed to appreciate why **Transformers and Self-Attention** were required to scale modern LLMs.
+
+---
 ### 🔹 Week 5: Attention Mechanisms & Full‑Scale Machine Translation
 
 #### Lecture 7 & 8: Generative Pre-trained Transformers (GPT)
