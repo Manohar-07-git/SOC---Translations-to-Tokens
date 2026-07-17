@@ -136,7 +136,7 @@ While highly effective for short phrases, this implementation clearly exposed th
 
 | Metric | Target Value |
 | :--- | :--- |
-| **Model Size** | 74 Parameters |
+| **Model Size** | 73.6 Parameters |
 | **Dataset** | OPUS Books (English to French) |
 | **Training Loss** | `1.4` |
 | **Validation Loss** | `1.5` |
