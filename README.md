@@ -12,7 +12,7 @@ A comprehensive, production-grade repository tracing the evolution of sequence m
 ## 🏗️ Core Engineering Highlights
 
 *   **Custom Tokenizer:** Built a fully operational Byte Pair Encoding (BPE) tokenizer from the ground up, mimicking OpenAI's `tiktoken` architecture.
-*   **74-Param Translation Model:** Formulated and trained an Encoder-Decoder Transformer from scratch on the OPUS Books dataset, achieving a highly converged validation loss.
+*   **74M-Param Translation Model:** Formulated and trained an Encoder-Decoder Transformer from scratch on the OPUS Books dataset, achieving a highly converged validation loss.
 *   **Engine-Level Micrograd:** Implemented a custom scalar-valued autograd engine with dynamically generated computational graphs using Graphviz.
 
 ---
@@ -134,12 +134,32 @@ While highly effective for short phrases, this implementation clearly exposed th
 #### 🏗️ Interactive Translation Engine (`engine.py`)
 *   Developed `engine.py`, a clean, modular runtime file hosting the core operational loops for an interactive translation pipeline.
 
-| Metric | Target Value |
+| Metric | Value / Configuration |
 | :--- | :--- |
-| **Model Size** | 74 Parameters |
+| **Model Size** | 74M Parameters |
 | **Dataset** | OPUS Books (English to French) |
 | **Training Loss** | `1.4` |
 | **Validation Loss** | `1.5` |
+
+---
+
+## 📊 Evaluation & BLEU Benchmark
+
+To rigorously verify the translation engine's linguistic performance, the network was evaluated completely offline using the industry-standard **SacreBLEU** metric. Testing was executed against a frozen evaluation slice (`test_data.json`) extracted from the `opus_books` corpus to achieve zero-lag network isolation.
+
+### 🥇 Summary Metrics
+*   **Final Corpus BLEU Score:** **18.33** (Highly precise performance for a domain-specific Transformer built from scratch).
+*   **Brevity Penalty (BP) Factor:** **0.7406** (Indicates conservative sentence construction due to structural text generation heuristics).
+
+### 📈 N-Gram Precision Analysis
+The geometric breakdown highlights over 56% vocabulary accuracy, alongside stable syntactical preservation across full 4-gram operational clauses:
+
+| Evaluated Layer | Correct Matches / Total Tokens | Absolute Precision |
+| :--- | :--- | :--- |
+| **1-Gram (Unigrams)** | `1147 / 2018` | **56.8%** |
+| **2-Gram (Bigrams)** | `581 / 1918` | **30.3%** |
+| **3-Gram (Trigrams)** | `343 / 1818` | **18.8%** |
+| **4-Gram (4-Grams)** | `199 / 1723` | **11.5%** |
 
 ---
 
